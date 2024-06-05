@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>Hello ! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        {% for recipe in recipes %}
+        <li>
+            <a href="{{ path('/recette/{slug}-{id}', {id: recipe.id, slug: recipe.slug}) }}"> {{ recipe.title}} </a>
+        </li>
+        {% endfor %}
+    </ul>
+    
+</div>
+{% endblock %}
