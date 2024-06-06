@@ -42,7 +42,7 @@ class RecipeController extends AbstractController
     #[Route('/recette/{id}/edit', name: 'recipe.edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Recipe $recipe, EntityManagerInterface $em): Response
     {   
-        $form = $this->createForm(RecipeType ::class, $recipe);
+        $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em->flush();

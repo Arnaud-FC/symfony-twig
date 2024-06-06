@@ -9,13 +9,11 @@
     <h1>Hello ! ✅</h1>
 
     This friendly message is coming from:
-    <ul>
-        {% for recipe in recipes %}
-        <li>
-            <a href="{{ path('/recette/{slug}-{id}', {id: recipe.id, slug: recipe.slug}) }}"> {{ recipe.title}} </a>
-        </li>
-        {% endfor %}
-    </ul>
+    
+
+    Ce site vous permet de partager vos recettes avec la communauté !
+
+    dirigez vous vers la page <a href="/recette"> Recette </a>
     
 </div>
 {% endblock %}
