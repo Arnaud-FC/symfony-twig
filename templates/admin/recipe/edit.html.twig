@@ -1,8 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
 
-{% block title "Créer ta recette" %}
+{% block title "Recette : " ~ recipe.title %}
 {% block body %}
-<h1> Creer une recette</h1>
 
 {{ form_start(form) }}
     <div class="flex">
