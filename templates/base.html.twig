@@ -30,7 +30,15 @@
         </nav>
         <div class="container my-4">
             {% include 'partials/flash.html.twig' %}
-            {{ dump(app.flashes) }}
+            <!-- remettre dump devant app.flashes pòur que ca fonctionne -->
+            {% for label, messages in app.flashes %}
+                <div class="flash-{{ label }}">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            
             {% block body %}
                 <style>
                 .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
