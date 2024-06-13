@@ -4,24 +4,27 @@ namespace App\Controller\Admin;
 
 use App\Entity\Recipe;
 use App\Form\RecipeType;
+use Doctrine\ORM\Mapping\Entity;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Requirement\Requirement;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route("/admin/recette", name: 'admin.recipe.')]
 class RecipeController extends AbstractController
 {
     #[Route('/', name: 'index')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(RecipeRepository $repository): Response
     {   
+        
         $recipes = $repository->findWithDurationLowerThan(30);
         
         return $this->render('admin/recipe/index.html.twig', [
