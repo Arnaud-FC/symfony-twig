@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -29,6 +30,9 @@ class Category
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'category')]
+    private Collection $recipes;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;

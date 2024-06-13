@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Requirement\Requirement;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 #[Route("/admin/recette", name: 'admin.recipe.')]
 class RecipeController extends AbstractController
@@ -52,7 +53,7 @@ class RecipeController extends AbstractController
 
 
     #[Route('/{id}', name: 'edit', methods: ['GET', 'POST'], requirements: ['id' => Requirement::DIGITS])]
-    public function edit(Request $request, Recipe $recipe, EntityManagerInterface $em): Response
+    public function edit(Request $request, Recipe $recipe, EntityManagerInterface $em, UploaderHelper $helper): Response
     {   
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);

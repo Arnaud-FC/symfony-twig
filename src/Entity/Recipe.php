@@ -47,6 +47,9 @@ class Recipe
     #[Assert\LessThan(value: 1440)]
     private ?int $duration = null;
 
+    #[ORM\ManyToOne(inversedBy: 'recipe')]
+    private ?Category $category = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $thumbnail = null;
 
